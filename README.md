@@ -29,3 +29,7 @@ chart, breakdown, streak), Chat (AI companion, photos, mood suggestions,
 crisis banner, history), Insights (7/14/30 days, PDF report), Weekly insights,
 Account (country, weekly email, daily reminder, export, delete, log out),
 and Get help now (available on every screen, even when logged out).
+
+## Related repository
+
+The Django backend (API) for MindSpace lives here: [MindSpace_Backend](https://github.com/TinahMak/MindSpace_Backend)
