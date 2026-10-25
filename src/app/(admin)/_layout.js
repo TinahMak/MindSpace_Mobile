@@ -25,6 +25,7 @@ export default function AdminLayout() {
       <Stack.Screen name="add-professional" options={{ title: 'Add a professional' }} />
       <Stack.Screen name="admins" options={{ title: 'Admins' }} />
       <Stack.Screen name="reports" options={{ title: 'Reports' }} />
+      <Stack.Screen name="backup" options={{ title: 'Backups' }} />
     </Stack>
   );
 }

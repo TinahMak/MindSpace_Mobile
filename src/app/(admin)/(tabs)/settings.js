@@ -17,6 +17,7 @@ export default function AdminSettings() {
       </Card>
       <Button title="Reports" icon="bar-chart-outline" variant="outline" onPress={() => router.push('/reports')} style={{ marginTop: space(4) }} />
       <Button title="Manage admins" icon="shield-checkmark-outline" variant="outline" onPress={() => router.push('/admins')} style={{ marginTop: space(4) }} />
+      <Button title="Backup to Google Drive" icon="cloud-upload-outline" variant="outline" onPress={() => router.push('/backup')} style={{ marginTop: space(4) }} />
       <Card tone="cream" style={{ marginTop: space(4) }}>
         <Body>The full admin panel, including the audit log, is also on the website:</Body>
         <Small style={{ marginTop: 4 }}>{SITE_URL}/panel/</Small>

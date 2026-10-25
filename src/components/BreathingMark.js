@@ -6,13 +6,17 @@ import { AccessibilityInfo, Animated, Easing, View } from 'react-native';
 const BARS = ['#E1A080', '#E8BEA4', '#CDC4B4', '#8FB49C', '#4A6B57'];
 const HEIGHTS = [0.42, 0.74, 1, 0.74, 0.42];
 
-export default function BreathingMark({ size = 160, style }) {
+// restartKey: change it to restart the rhythm from the start of an in-breath
+// (used to keep the bars in time with breathing sounds).
+export default function BreathingMark({ size = 160, style, restartKey = 0 }) {
   const t = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     let loop;
+    let cancelled = false;
+    t.setValue(0);
     AccessibilityInfo.isReduceMotionEnabled().then((reduce) => {
-      if (reduce) return;
+      if (reduce || cancelled) return;
       loop = Animated.loop(
         Animated.sequence([
           Animated.timing(t, { toValue: 1, duration: 4000, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
@@ -21,8 +25,11 @@ export default function BreathingMark({ size = 160, style }) {
       );
       loop.start();
     });
-    return () => loop?.stop();
-  }, [t]);
+    return () => {
+      cancelled = true;
+      loop?.stop();
+    };
+  }, [t, restartKey]);
 
   const barW = size * 0.12;
   const gap = size * 0.07;

@@ -45,7 +45,7 @@ export default function Tools() {
     <Screen>
       <TopBar title="Tools" />
       <Group title="Calm down now" sub="For when things feel like too much.">
-        <Tool icon="leaf-outline" tint={colors.sageWash} title="Breathing" text="Slow your breathing with gentle guidance" onPress={() => router.push('/breathing')} />
+        <Tool icon="leaf-outline" tint={colors.sageWash} title="Breathing" text="Slow your breathing with gentle guidance and sound" onPress={() => router.push('/breathing')} />
         <Tool icon="hand-left-outline" tint={colors.sageWash} title="Grounding (5-4-3-2-1)" text="Come back to the present, one sense at a time" onPress={() => router.push('/grounding')} />
         <Tool icon="play-circle-outline" tint={colors.sageWash} title="Guided breath video" text="A 15-second breathing break with sound" onPress={() => router.push('/breathe')} />
       </Group>
