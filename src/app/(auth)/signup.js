@@ -61,7 +61,7 @@ export default function Signup() {
     if (n === 1) {
       const fe = nameError(f.first_name, 'First name');
       const le = nameError(f.last_name, 'Last name');
-      const ee = emailError(f.email);
+      const ee = emailError(f.email, { strict: true });
       if (fe) e.first_name = fe;
       if (le) e.last_name = le;
       if (ee) e.email = ee;

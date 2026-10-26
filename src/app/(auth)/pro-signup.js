@@ -39,7 +39,7 @@ export default function ProSignup() {
     if (n === 0) {
       const fe = nameError(acct.first_name, 'First name');
       const le = nameError(acct.last_name, 'Last name');
-      const ee = emailError(acct.email);
+      const ee = emailError(acct.email, { strict: true });
       if (fe) e.first_name = fe;
       if (le) e.last_name = le;
       if (ee) e.email = ee;

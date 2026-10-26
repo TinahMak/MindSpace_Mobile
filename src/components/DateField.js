@@ -20,7 +20,7 @@ function IOSPicker({ visible, value, mode, minimumDate, maximumDate, onDone, onC
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onCancel}>
       <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(44,44,44,0.35)' }}>
         <View style={{ backgroundColor: colors.warmWhite, borderTopLeftRadius: radius.lg, borderTopRightRadius: radius.lg, padding: space(4) }}>
-          <DateTimePicker value={temp || value} mode={mode} display="spinner" minimumDate={minimumDate} maximumDate={maximumDate} onChange={(_, d) => d && setTemp(d)} />
+          <DateTimePicker value={temp || value} mode={mode} display="spinner" minimumDate={minimumDate} maximumDate={maximumDate} onValueChange={(_, d) => d && setTemp(d)} />
           <Button title="Done" onPress={() => onDone(temp || value)} />
           <Button title="Cancel" variant="ghost" onPress={onCancel} style={{ marginTop: 4 }} />
         </View>
@@ -41,15 +41,16 @@ export default function DateField({ label, value, onChange, mode = 'date', minim
       mode: 'date',
       minimumDate,
       maximumDate,
-      onChange: (ev, d) => {
-        if (ev.type !== 'set' || !d) return;
+      // onValueChange only fires when a date is chosen (not on Cancel).
+      onValueChange: (_, d) => {
+        if (!d) return;
         if (mode !== 'datetime') return onChange(d);
         DateTimePickerAndroid.open({
           value: d,
           mode: 'time',
           is24Hour: true,
-          onChange: (ev2, t) => {
-            if (ev2.type !== 'set' || !t) return;
+          onValueChange: (_, t) => {
+            if (!t) return;
             const combined = new Date(d);
             combined.setHours(t.getHours(), t.getMinutes(), 0, 0);
             onChange(combined);
